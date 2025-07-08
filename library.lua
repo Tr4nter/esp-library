@@ -64,11 +64,7 @@ local function createEsp(player)
         _tracerColor = ESP_SETTINGS.TracerTargetColor
     end
     local esp = {
-        tracer = create("Line", {
-            Thickness = ESP_SETTINGS.TracerThickness,
-            Color = ESP_SETTINGS.TracerColor,
-            Transparency = 0.5
-        }),
+      
         boxOutline = create("Square", {
             Color = ESP_SETTINGS.BoxOutlineColor,
             Thickness = 3,
@@ -347,6 +343,11 @@ local function updateEsp()
                             esp.tracer.From = Vector2.new(camera.ViewportSize.X / 2, tracerY)
                             esp.tracer.To = Vector2.new(hrp2D.X, hrp2D.Y)            
                         end
+                        if ESP_SETTINGS.TracerTarget == player then
+                            esp.tracer.Color = ESP_SETTINGS.TracerTargetColor
+                        else
+                            esp.tracer.Color = ESP_SETTINGS.TracerColor
+                        end 
                     else
                         esp.tracer.Visible = false
                     end
